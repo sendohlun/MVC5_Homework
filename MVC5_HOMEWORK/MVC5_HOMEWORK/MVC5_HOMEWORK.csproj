@@ -185,6 +185,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\客戶相關資料表.cs">
+      <DependentUpon>客戶管理Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\客戶管理Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
