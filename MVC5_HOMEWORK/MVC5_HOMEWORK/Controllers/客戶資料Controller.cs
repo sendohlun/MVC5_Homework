@@ -17,7 +17,7 @@ namespace MVC5_HOMEWORK.Controllers
         // GET: 客戶資料
         public ActionResult Index()
         {
-            return View(db.客戶資料.ToList());
+            return View(db.客戶資料.Where(c => c.是否已刪除 != true).ToList());
         }
 
         // GET: 客戶資料/Details/5
@@ -50,6 +50,7 @@ namespace MVC5_HOMEWORK.Controllers
         {
             if (ModelState.IsValid)
             {
+                客戶資料.是否已刪除 = false;
                 db.客戶資料.Add(客戶資料);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,7 +111,8 @@ namespace MVC5_HOMEWORK.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶資料 客戶資料 = db.客戶資料.Find(id);
-            db.客戶資料.Remove(客戶資料);
+            //db.客戶資料.Remove(客戶資料); 
+            客戶資料.是否已刪除 = true; //將原本從資料庫刪除資料，改為由[是否已刪除]的欄位做紀錄，而非真正刪除
             db.SaveChanges();
             return RedirectToAction("Index");
         }
